@@ -83,6 +83,7 @@ variable "vms" {
     datastore_id = string
     disk_size_gb = number
     bridge       = optional(string, "vmbr0")
+    mac_address  = string
     ip_address   = string
     gateway      = string
     tags         = optional(list(string), [])
@@ -92,24 +93,8 @@ variable "vms" {
     image_file_name    = optional(string)
     image_datastore_id = optional(string)
 
-    cloud_init_user     = optional(string)
-    cloud_init_ssh_keys = optional(list(string))
   }))
   default = {}
-}
-
-variable "cloud_init_user_default" {
-  description = "Default cloud-init username for standalone VMs"
-  type        = string
-  default     = "ansible"
-}
-
-variable "cloud_init_ssh_keys_default" {
-  description = "Default cloud-init SSH public keys for standalone VMs"
-  type        = list(string)
-  default = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEwHgGwYE2mlHbxJdnxQxr7+0krzV2lcGfRfVCNHCNEE ansible@digitalfault.com"
-  ]
 }
 
 variable "write_outputs" {

@@ -39,10 +39,12 @@ vms = {
     datastore_id       = "vms"
     disk_size_gb       = 20
     bridge             = "vmbr0"
-    ip_address         = "144.76.195.209/32"
-    gateway            = "144.76.195.220"
+    mac_address        = "00:50:56:00:74:95"
+    ip_address         = "144.76.195.209/27"
+    gateway            = "144.76.195.193"
     image_url          = "https://cloud-images.ubuntu.com/noble/current/noble-server-cloudimg-amd64.img"
     image_file_name    = "ubuntu-24.04-cloudimg-amd64.img"
     image_datastore_id = "templates"
+
   }
 }

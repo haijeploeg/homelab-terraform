@@ -11,7 +11,4 @@ module "proxmox_vms" {
 
   default_tags = var.vm_default_tags
   vms          = var.vms
-
-  cloud_init_user_default     = var.cloud_init_user_default
-  cloud_init_ssh_keys_default = var.cloud_init_ssh_keys_default
 }

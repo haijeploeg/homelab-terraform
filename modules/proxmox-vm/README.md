@@ -13,19 +13,18 @@ Create standalone VMs on Proxmox VE.
   - `datastore_id` - Storage datastore ID
   - `disk_size_gb` - Disk size in GB
   - `bridge` - Network bridge (default: "vmbr0")
-  - `ip_address` - Static IP address (optional)
-  - `gateway` - Network gateway (optional)
+  - `ip_address` - Static IP address
+  - `gateway` - Network gateway
   - `tags` - Additional VM tags (optional)
   - `boot_file_id` - Custom boot file ID (optional)
   - `image_url` - Download URL for a boot image (optional)
   - `image_file_name` - File name to store the downloaded image (optional)
   - `image_datastore_id` - Datastore for the downloaded image (optional; defaults to `datastore_id`)
-  - `cloud_init_user` - Cloud-init username (optional)
-  - `cloud_init_ssh_keys` - Cloud-init SSH public keys (optional)
+  - Cloud-init is rendered from a built-in template in the module
 
-- Module defaults:
-  - `cloud_init_user_default` - Default cloud-init username (defaults to `ansible`)
-  - `cloud_init_ssh_keys_default` - Default SSH public keys (defaults to ansible key)
+### Cloud-init
+
+This module always renders a built-in cloud-init template with a per-VM network block and uploads it as a snippet.
 
 ## Example Usage
 
@@ -50,10 +49,7 @@ module "proxmox_vms" {
       image_url         = "https://cloud-images.ubuntu.com/noble/current/noble-server-cloudimg-amd64.img"
       image_file_name   = "ubuntu-24.04-cloudimg-amd64.img"
       image_datastore_id = "templates"
-      cloud_init_user     = "ansible"
-      cloud_init_ssh_keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEwHgGwYE2mlHbxJdnxQxr7+0krzV2lcGfRfVCNHCNEE ansible@digitalfault.com"
-      ]
+      # Cloud-init is always applied from modules/proxmox-vm/cloud-init.yaml
     }
   }
 }
